@@ -1,0 +1,29 @@
+
+<div class="inner profile">
+    <div style="padding-top: 100px;">
+        <div class="tabs">
+            <div class="panel" id="account-overview" style="display: block; width: 611px;">
+                <div class="panel-content">
+                    <div class="col-2 col row account-info">
+                        <div class="block-1 block user-info">
+                        </div>
+                        <div class="block-2 block change-password" style="float:center">
+                            <header>
+                                <h1>Login</h1>
+                            </header>
+                            <?php if ($this->loginFailed) { ?>
+                                <div style="display:block;" class="alert-message red">
+                                    Sorry, either your email or password were entered incorrectly.
+                                </div>
+                            <?php } ?>
+                            <?= $this->loginForm ?>
+                            <footer>
+                                <a href="/users/signup">Sign Up for OfficeBuilder</a>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>

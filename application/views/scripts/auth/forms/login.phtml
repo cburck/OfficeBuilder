@@ -1,0 +1,14 @@
+
+    <form action="<?= $this->element->getAction() ?>" method="post" id="change-password" class="login-form">
+        <div class="form-item">
+            <label for="email">Email Address</label>
+            <?= $this->element->email ?>
+        </div>
+        <div class="form-item password">
+            <label for="password">Password</label>
+            <?= $this->element->password ?>
+        </div>
+        <div class="form-item login">
+            <input type="submit" id="login-submit" value="Login" />
+        </div>
+    </form>

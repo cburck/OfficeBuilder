@@ -1,0 +1,36 @@
+
+1) Add "127.0.0.1 office-builder" to /etc/hosts
+
+2) Clone OfficeBuilder project directory locally from GitHub. Note local path.
+
+3) Update Apache config. The following VHOST config is standard and should work with v2.2:
+
+<VirtualHost *:80>
+  ServerName office-builder
+  DocumentRoot /Users/cburck/OfficeBuilder/OfficeBuilder/public
+  SetEnv STORAGE_PATH /Users/cburck/OfficeBuilder/OfficeBuilder/data
+
+  <Directory "/Users/cburck/OfficeBuilder/OfficeBuilder/">
+      Options Indexes MultiViews FollowSymLinks
+      Require all granted
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+  </Directory>
+</VirtualHost>
+
+
+4) Make /Users/cburck/OfficeBuilder/OfficeBuilder/data fully accessible to web server.
+
+5) Create MySQL database "OfficeBuilder", and create MySQL user "OfficeBuilder" with password "OfficeBuilderLocal" (this is set in applications/configs/application.ini)
+
+6) Apply scripts/schema.sql to database "OfficeBuilder"
+
+7) Apply default data set scripts/data.sql to database "OfficeBuilder"
+
+8) Create users and enjoy
+
+
+
+
+

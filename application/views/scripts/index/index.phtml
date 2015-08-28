@@ -1,0 +1,122 @@
+
+<?php if (!$this->user): ?>
+
+<div class="inner profile" style="margin-top: 100px;">
+    <h1>Welcome to OfficeBuilder</h1>
+
+    <h2>Check out our Products</h2>
+    <ul>
+        <li><a href="/products/">Ping Pong</a></li>
+        <li><a href="/products/">Window Seats</a></li>
+        <li><a href="/products/">Offices</a></li>
+    </ul>
+
+    <h2>Already have an account?</h2>
+    <ul>
+        <li><a href="/auth/login">Login</a></li>
+    </ul>
+
+    <h2>Need to create an account?</h2>
+    <ul>
+        <li><a href="/users/signup">Sign Up for OfficeBuilder</a></li>
+    </ul>
+</div>
+
+<?php else: ?>
+
+<div class="inner profile" style="margin-top: 100px;">
+    <div id="tabs">
+        <div class="loader" style="display: none;"></div>
+        <div class="tabs" style="border-left:none;">
+            <div class="panel" id="account-overview" style="display: block; width: 611px;">
+                <div class="panel-content">
+                    <div class="col-2 col row account-info">
+                        <div class="block-1 block user-info">
+                            <header>
+                                <span class="title">Account Info</span>
+                            </header>
+                            <div class="info">
+                                <div class="alert-message green">
+                                    <span></span>
+                                </div>
+                                <div class="alert-message red">
+                                    <span></span>
+                                </div>
+                                <div class="name">
+                                    <span><?= $this->user->getFirstName() ?></span>
+                                    <span><?= $this->user->getLastName() ?></span>
+                                </div>
+                                <div class="email">
+                                    <span><?= $this->user->getEmail() ?></span>
+                                </div>
+                            </div>
+                            <header>
+                                <span class="title"></span>
+                            </header>
+                            <div class="info">
+                                <div class="address">
+                                    <span>Favorite Color</span>
+                                    <select id="fav-color" data="<?= $this->user->getId() ?>">
+                                        <?php
+                                        foreach (OfficeBuilder_Model_User::getColorOptions() as $currColor)
+                                        {
+                                            echo '<option value="'.$currColor.'"'.($currColor == $this->user->getFavoriteColor() ? ' selected' : '').'>'.$currColor.'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-2 block change-password">
+                            <header>
+                                <span class="title">Change Password</span>
+                            </header>
+                            <div class="alert-message green">
+                                <span></span>
+                            </div>
+                            <div class="alert-message red">
+                                <span></span>
+                            </div>
+                            <form action="/profile/partials/account-overview-action.php" method="post" id="change-password" novalidate="novalidate">
+                                <input type="hidden" name="comingfrom" value="/profile/account-overview">
+                                <div class="form-item">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="New Password">
+                                </div>
+                                <div class="form-item">
+                                    <label for="password2">Confirm Password</label>
+                                    <input type="password" id="password2" name="password2" placeholder="Confirm New Password">
+                                </div>
+                                <div class="form-item">
+                                    <input type="submit" class="submit" value="Update Password">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="payment-info">
+                        <header>
+                            <span class="title">Purchases</span>
+                        </header>
+                        <div class="cards">
+                            <div class="add-card card modal-trigger" data-modal="credit-card">
+                                <div class="card-info">
+                                    <span>+ </span> add new card
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subscription-block" style="margin-top: 3em;">
+                        <header>
+                            <span class="title">Subscription Information</span>
+                        </header>
+                        <div class="current-charges">
+                            <div>Membership Status: <span class="paid">Subscriber</span></div>
+                            <div>Membership City: New Orleans</div>
+                        </div>
+                    </div>					</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php endif; ?>

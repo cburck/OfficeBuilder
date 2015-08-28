@@ -1,0 +1,99 @@
+<html lang="en" class="js flexbox flexboxlegacy rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent desktop mac landscape mac os macos10 macos10_10 32bit chrome chrome44 chrome44_0 webkit en-us flash java wf-museosans-i5-active wf-museosans-i7-active wf-museosans-i9-active wf-museosans-n5-active wf-museosans-n7-active wf-museosans-n9-active wf-active">
+    <title>OfficeBuilder | Pick your Spot</title>
+    <meta name="description" content="Office Builder">
+    <meta name="keywords" content="pork rinds">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <?php echo $this->headLink(); ?>
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/_/images/favi/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/_/images/favi/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/_/images/favi/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/_/images/favi/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/_/images/favi/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/_/images/favi/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/_/images/favi/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/_/images/favi/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/_/images/favi/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/_/images/favi/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/_/images/favi/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/_/images/favi/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/_/images/favi/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/_/images/favi/manifest.json">
+    <link rel="shortcut icon" href="/_/images/favi/favicon.ico">
+    <meta name="msapplication-TileColor" content="#262626">
+    <meta name="msapplication-TileImage" content="/_/images/favi/mstile-144x144.png">
+    <meta name="msapplication-config" content="/_/images/favi/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/templates/profile.css">
+
+    <?php echo $this->jQuery()->setRenderMode(ZendX_JQuery::RENDER_STYLESHEETS); ?>
+
+    <!-- Head Scripts -->
+    <script src="/js/modern-detect-izr.js"></script>
+    <script src="//use.typekit.net/bvh3urj.js"></script>
+    <style type="text/css">.tk-museo-sans{font-family:"museo-sans",sans-serif;}</style>
+    <link rel="stylesheet" href="https://use.typekit.net/c/f93d8d/1w;museo-sans,7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191,PyD:T:i5,PyG:T:i7,PyJ:T:i9,PyC:T:n5,PyF:T:n7,PyH:T:n9/l?3bb2a6e53c9684ffdc9a9afe135b2a62d0c5cfebd5c62bc6cb59539a88cd0cf9cfe314e0fc33554284d63fce418c580d9ebc24775471208b45dd516df0e7d06d7030bc3730a14f9a0ca2dd80fa19ee3c0da0e5aea46b648b8d" media="all">
+    <script>try{Typekit.load();}catch(e){}</script>
+<!-- Body -->
+<body class="members-profile">
+
+<!-- Header -->
+<a href="#skip" class="skip">Skip Navigation</a>
+<div class="nav-icon">
+    <div></div>
+</div>
+<header id="header">
+    <a href="/">
+        <img src="/_/images/logo-white.svg" alt="Office Builder" class="logo">
+    </a>
+</header>
+<div class="main-nav-wrap">
+    <nav class="main-nav member">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products/">Ping Pong</a></li>
+            <li><a href="/products/">Window Seats</a></li>
+            <li><a href="/products/">Offices</a></li>
+
+            <?php if ($this->user) :?>
+            <li><a href="/auth/logout">Logout</a></li>
+            <?php else: ?>
+            <li><a href="/auth/login">Login</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+</div>
+<div id="skip"></div>
+<!-- END: Header -->
+
+
+<div class="main">
+
+    <?php echo $this->layout()->content ?>
+
+</div>
+
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="copyright">
+        OfficeBuilder | Pick your Spot
+    </div>
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
+
+<?php echo $this->jQuery()->setRenderMode(ZendX_JQuery::RENDER_ALL ^ ZendX_JQuery::RENDER_STYLESHEETS); ?>
+
+</div>
+</body>
+</html>
