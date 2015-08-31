@@ -1,0 +1,37 @@
+<?php
+/**
+ * Set product set as variable for readability and code-completion
+ *
+ * @var OfficeBuilder_Model_Product_Set $productSet
+ */
+$productSet = $this->productSet;
+?>
+<div id="tabs" style="padding-top: 10px;margin-top: 0px;">
+    <div class="tabs" style="border-left:none; padding-top: 0px;margin-top: 0px;">
+        <header>
+            <h2><?= $this->categoryLabel ?></h2>
+            Browse availability below.
+            <?= ($this->user ? 'You can only purchase one spot per period.' : '<a href="/auth/login">Login</a> to make a purchase.') ?>
+        </header>
+
+        <div class="info" style="margin-top: 30px;">
+            <?php if ($productSet->hasProducts()): ?>
+                <?php
+                    foreach ($productSet->getProducts() as $currProduct)
+                    {
+                        echo $this->partial('/products/partials/product.phtml', array(
+                            'product' => $currProduct,
+                            'productSet' => $productSet,
+                            'user' => $this->user
+                            )
+                        );
+                    }
+                ?>
+            <?php else: ?>
+                <!-- no products message here -->
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<br clear="all">
+<br>

@@ -163,6 +163,6 @@ class OfficeBuilder_Model_User extends OfficeBuilder_Model_Abstract
      */
     public static function getColorOptions()
     {
-        return array('Invisible', 'Blue', 'Red', 'Green', 'Purple', 'Orange');
+        return array('Blue', 'Red', 'Green', 'Purple', 'Orange', 'Invisible');
     }
 }

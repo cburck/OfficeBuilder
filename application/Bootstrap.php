@@ -23,6 +23,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		//set LOG_PATH now
 		require_once('OfficeBuilder/FileSystem/Broker.php');
 		defined('LOG_PATH') || define('LOG_PATH', OfficeBuilder_FileSystem_Broker::getPath(OfficeBuilder_FileSystem_Broker::LOGS));
+
+        //timezone
+        date_default_timezone_set('America/Chicago');
 	}
 	
     /**

@@ -182,14 +182,14 @@ html.mobile #tabs ul.profile-nav li a.on {
   text-decoration: none; }
 #tabs .tabs {
   position: relative;
-  width: 79.21111111%;
+  width: 90%;
   padding: 50px 0;
   float: left;
   min-height: 500px;
   overflow: hidden;
   border-left: #000000 solid 1px;
   background: #ffffff; }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
   #tabs .tabs {
     width: 100%;
     float: none;
@@ -203,7 +203,7 @@ html.mobile #tabs ul.profile-nav li a.on {
   background: inherit; }
 html.tablet.portrait #tabs .tabs .panel {
   min-height: auto; }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
   #tabs .tabs .panel {
     width: 100% !important;
     left: auto;

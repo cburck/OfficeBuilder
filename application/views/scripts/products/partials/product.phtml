@@ -1,0 +1,67 @@
+<?php
+/**
+ * Set product set as variable for readability and code-completion
+ *
+ * @var OfficeBuilder_Model_Product_Set $productSet
+ */
+$productSet = $this->productSet;
+
+/**
+ * @var OfficeBuilder_Model_Product $product
+ */
+$product = $this->product;
+$inventory = $productSet->getInventoryForProduct($product);
+?>
+<div class="product-wrapper" style="margin-top: 35px;">
+    <header>
+        <h3 style="margin-bottom: 0px;"><?= $product->getName() ?></h3>
+        <?= $product->getDescription() ?>
+    </header>
+    <div class="inventory-wrapper" style="margin-top: 20px;">
+        <table width="100%">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Period</th>
+                <?php if ($this->user && $this->user->isAdmin()): ?>
+                    <th>Total Spots</th>
+                <?php endif; ?>
+                <th>Spots Remaining</th>
+                <th>Price</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            /* @var OfficeBuilder_Model_Inventory $currInventory */
+            foreach ($inventory as $currInventory): ?>
+                <tr>
+                    <td><?= $currInventory->getProduct()->getName() ?></td>
+                    <td><?= $currInventory->getPeriodDescription() ?></td>
+                    <?php if ($this->user && $this->user->isAdmin()): ?>
+                        <td>
+                            <input type="text" class="inventory-units" data-inventory-id="<?= $currInventory->getId() ?>" value="<?= $currInventory->getUnits() ?>" style=" width:60px;">
+                        </td>
+                    <?php endif; ?>
+                    <td class="availble-units"><?= number_format($productSet->getAvailableUnitsForInventory($currInventory)) ?></td>
+                    <td class="price"><?= '$'.number_format($currInventory->getPpu(), 2) ?></td>
+                    <td>
+                        <?php if($this->user && $purchase = $productSet->getUserPurchaseByInventory($currInventory)): ?>
+                            <!-- user already purchased -->
+                        <?php elseif ($productSet->getAvailableUnitsForInventory($currInventory) < 1): ?>
+                            SOLD OUT
+                        <?php elseif (!$this->user): ?>
+                            <a href="/auth/login"><input type="button" value="Login to Purchase"></a>
+                        <?php else: ?>
+                            <input type="button" class="purchase-inventory" value="Purchase" data-inventory-id="<?= $currInventory->getId() ?>">
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

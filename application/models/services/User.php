@@ -58,6 +58,18 @@ class OfficeBuilder_Model_Service_User extends OfficeBuilder_Model_Service_Abstr
     }
 
     /**
+     * Updates a user's password.
+     *
+     * @param OfficeBuilder_Model_User $user
+     * @param string $password
+     * @param bool $hashed
+     */
+    public function updatePassword(OfficeBuilder_Model_User $user, $password)
+    {
+        return $this->getMapper()->updatePassword($user, $password);
+    }
+
+    /**
      * @return OfficeBuilder_Model_Mapper_User
      */
     public function _createMapper()

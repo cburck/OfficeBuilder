@@ -1495,7 +1495,7 @@ input[type="number"] {
   -moz-appearance: textfield; }
 
 select, textarea, input[type='text'], input[type='email'], input[type='number'], input[type='tel'], input[type='password'] {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   -webkit-appearance: none;
   border-top-left-radius: 0;
@@ -2623,5 +2623,10 @@ html.mobile #modal .exp-date, html.mobile #modal .cvv {
   width: 100%; }
 html.mobile #modal .exp-date .form-item, html.mobile #modal .cvv .form-item {
   width: 100%; }
+
+
+tbody tr:nth-child(odd) {
+  background-color: #ccc;
+}
 
 /*# sourceMappingURL=style.css.map */

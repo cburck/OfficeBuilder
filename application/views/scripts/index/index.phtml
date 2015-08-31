@@ -1,15 +1,14 @@
 
+<h1>Welcome to Office Builder<?= $this->user ? ', '.ucfirst(strtolower($this->user->getFirstName())) : '' ?></h1>
+
+<h2>Check out our Products</h2>
+<ul>
+    <?php foreach (OfficeBuilder_Model_Product::getCategories() as $categoryIndex => $categoryName) : ?>
+        <li><a href="/products/index/category/<?= $categoryIndex ?>"><?= $categoryName ?></a></li>
+    <?php endforeach; ?>
+</ul>
+
 <?php if (!$this->user): ?>
-
-<div class="inner profile" style="margin-top: 100px;">
-    <h1>Welcome to OfficeBuilder</h1>
-
-    <h2>Check out our Products</h2>
-    <ul>
-        <li><a href="/products/">Ping Pong</a></li>
-        <li><a href="/products/">Window Seats</a></li>
-        <li><a href="/products/">Offices</a></li>
-    </ul>
 
     <h2>Already have an account?</h2>
     <ul>
@@ -20,15 +19,14 @@
     <ul>
         <li><a href="/users/signup">Sign Up for OfficeBuilder</a></li>
     </ul>
-</div>
 
 <?php else: ?>
 
-<div class="inner profile" style="margin-top: 100px;">
-    <div id="tabs">
-        <div class="loader" style="display: none;"></div>
-        <div class="tabs" style="border-left:none;">
-            <div class="panel" id="account-overview" style="display: block; width: 611px;">
+    <h2 style="margin-top: 26px;">My Profile</h2>
+
+    <div id="tabs" style="padding-top: 10px;margin-top: 0px;">
+        <div class="" style="border-left:none; padding-top: 0px;margin-top: 0px;">
+            <div class="panel" id="account-overview" style="display: block; width: 900px;">
                 <div class="panel-content">
                     <div class="col-2 col row account-info">
                         <div class="block-1 block user-info">
@@ -36,8 +34,8 @@
                                 <span class="title">Account Info</span>
                             </header>
                             <div class="info">
-                                <div class="alert-message green">
-                                    <span></span>
+                                <div class="alert-message green" id="color-update">
+                                    <span>Favorite color successfully updated.</span>
                                 </div>
                                 <div class="alert-message red">
                                     <span></span>
@@ -48,6 +46,9 @@
                                 </div>
                                 <div class="email">
                                     <span><?= $this->user->getEmail() ?></span>
+                                </div>
+                                <div class="email">
+                                    <span><?= $this->user->isAdmin() ? 'Admin User' : 'Basic User' ?></span>
                                 </div>
                             </div>
                             <header>
@@ -71,52 +72,52 @@
                             <header>
                                 <span class="title">Change Password</span>
                             </header>
-                            <div class="alert-message green">
-                                <span></span>
+                            <div class="alert-message green"<?= $this->passwordMsg ? ' style="display:block;"' : '' ?>>
+                                <span><?= $this->passwordMsg ?></span>
                             </div>
-                            <div class="alert-message red">
-                                <span></span>
+                            <div class="alert-message red"<?= $this->passwordError ? ' style="display:block;"' : '' ?>>
+                                <span><?= $this->passwordError ?></span>
                             </div>
-                            <form action="/profile/partials/account-overview-action.php" method="post" id="change-password" novalidate="novalidate">
-                                <input type="hidden" name="comingfrom" value="/profile/account-overview">
-                                <div class="form-item">
-                                    <label for="password">Password</label>
-                                    <input type="password" id="password" name="password" placeholder="New Password">
-                                </div>
-                                <div class="form-item">
-                                    <label for="password2">Confirm Password</label>
-                                    <input type="password" id="password2" name="password2" placeholder="Confirm New Password">
-                                </div>
-                                <div class="form-item">
-                                    <input type="submit" class="submit" value="Update Password">
-                                </div>
-                            </form>
+                            <?= $this->passwordForm ?>
                         </div>
                     </div>
                     <div class="payment-info">
                         <header>
-                            <span class="title">Purchases</span>
+                            <span class="title">Purchase History</span>
                         </header>
                         <div class="cards">
-                            <div class="add-card card modal-trigger" data-modal="credit-card">
-                                <div class="card-info">
-                                    <span>+ </span> add new card
-                                </div>
-                            </div>
+                            <table width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Product</th>
+                                    <th>Spots</th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                    if ($this->purchases)
+                                    {
+                                        /* @var OfficeBuilder_Model_Purchase $currPurchase */
+                                        foreach ($this->purchases as $currPurchase): ?>
+                                            <tr>
+                                                <td><?= date('n/j/Y g:i a', strtotime($currPurchase->getCreatedOn())) ?></td>
+                                                <td><?= $currPurchase->getInventory()->getProduct()->getName().' ('.$currPurchase->getInventory()->getPeriodDescription().')' ?></td>
+                                                <td><?= number_format($currPurchase->getUnits()) ?></td>
+                                                <td>$<?= number_format($currPurchase->getPpu(), 2) ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                <?php } else { ?>
+                                    <tr><td colspan="5"><br>No purchases. Please browse our services above!</td></tr>
+                                <?php }  ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="subscription-block" style="margin-top: 3em;">
-                        <header>
-                            <span class="title">Subscription Information</span>
-                        </header>
-                        <div class="current-charges">
-                            <div>Membership Status: <span class="paid">Subscriber</span></div>
-                            <div>Membership City: New Orleans</div>
-                        </div>
-                    </div>					</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <?php endif; ?>

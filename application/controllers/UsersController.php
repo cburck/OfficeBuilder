@@ -31,11 +31,49 @@ class UsersController extends OfficeBuilder_Controller
     }
 
     /**
-     * Signup for account
+     * Signup for account.
      */
     public function signupAction()
     {
+        //setup
+        $userService = $this->_serviceFactory->getUser();
 
+        //change password form
+        $signupForm = new OfficeBuilder_Form_Signup();
+
+        if ($this->_request->isPost())
+        {
+            $params = $this->_request->getParams();
+
+            if ($signupForm->isValid($params))
+            {
+                //create user
+                $user = $userService->create();
+                $user = $userService->save($user, $params);
+                $userService->updatePassword($user, $params['password']);
+
+                //log user in
+                $auth = Zend_Auth::getInstance();
+
+                $adapter = new Zend_Auth_Adapter_DbTable(
+                    Zend_Db_Table::getDefaultAdapter(), 'Users', 'email', 'password', 'SHA1(?)'
+                );
+
+                $adapter->setIdentity($params['email']);
+                $adapter->setCredential($params['password']);
+                $auth->authenticate($adapter);
+
+                $this->session->user = $user;
+
+                $this->redirect('/index/index/create/1');
+            }
+            else
+            {
+                $this->view->errorMsg = 'Please check form for errors and try again.';
+            }
+        }
+
+        $this->view->signupForm = $signupForm;
     }
 
     /**

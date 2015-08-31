@@ -13,9 +13,6 @@ class ErrorController extends Zend_Controller_Action
      */
     public function init()
     {
-        // SWITCH TO A BASIC LAYOUT
-        $this->_helper->layout()->setLayout('error');
-
         //context switch
         $contextSwitch = $this->_helper->getHelper('contextSwitch');
         $contextSwitch->addActionContext('error', array('xml', 'json'))->initContext();
@@ -26,7 +23,7 @@ class ErrorController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-        $this->redirect('/error/error', true);
+        $this->redirect('/error/error');
     }
 
     /**

@@ -51,22 +51,27 @@
 </div>
 <header id="header">
     <a href="/">
-        <img src="/_/images/logo-white.svg" alt="Office Builder" class="logo">
+        <img src="/images/logo.png" alt="Office Builder" class="logo">
     </a>
 </header>
 <div class="main-nav-wrap">
     <nav class="main-nav member">
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/products/">Ping Pong</a></li>
-            <li><a href="/products/">Window Seats</a></li>
-            <li><a href="/products/">Offices</a></li>
+
+            <?php foreach (OfficeBuilder_Model_Product::getCategories() as $categoryIndex => $categoryName) : ?>
+                <li><a href="/products/index/category/<?= $categoryIndex ?>"><?= $categoryName ?></a></li>
+            <?php endforeach; ?>
 
             <?php if ($this->user) :?>
             <li><a href="/auth/logout">Logout</a></li>
             <?php else: ?>
             <li><a href="/auth/login">Login</a></li>
+                <li>
+                    <a href="/users/signup" class="sign-up">Sign Up</a>
+                </li>
             <?php endif; ?>
+
         </ul>
     </nav>
 </div>
@@ -75,9 +80,9 @@
 
 
 <div class="main">
-
-    <?php echo $this->layout()->content ?>
-
+    <div class="inner profile" style="margin-top: 100px;">
+        <?php echo $this->layout()->content ?>
+    </div>
 </div>
 
 

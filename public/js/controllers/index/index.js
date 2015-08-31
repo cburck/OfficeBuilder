@@ -10,13 +10,15 @@ indexController = {
         //change event for favorite color drop-down
         $("#fav-color").bind("change", function() {
 
+            $("#color-update").hide();
+
             var params = {"favorite_color":$(this).val(),"id":$(this).attr('data')};
 
             $.post("/users/set-favorite-color/format/json", params, function(returned){
                 if (returned.response.error === true) {
                     alert(returned.response.errorMsg);
                 } else {
-                    //humm, maybe flash select box?
+                    $("#color-update").show();
                 }
             }, "json");
         });

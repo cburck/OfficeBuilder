@@ -8,9 +8,9 @@
 class OfficeBuilder_Model_Product extends OfficeBuilder_Model_Abstract
 {
     //hardcoded categories
-    const PRODUCT_CATEGORY_OFFICE = 'Office';
-    const PRODUCT_CATEGORY_PINGPONG = 'PingPong';
-    const PRODUCT_CATEGORY_WINDOW = 'Window';
+    const PRODUCT_CATEGORY_OFFICE = 'office';
+    const PRODUCT_CATEGORY_PINGPONG = 'pingpong';
+    const PRODUCT_CATEGORY_WINDOW = 'window';
 
     //types
     const PRODUCT_TYPE_DAYTIME = 'DateTime';
@@ -119,5 +119,15 @@ class OfficeBuilder_Model_Product extends OfficeBuilder_Model_Abstract
     public function setCreatedOn($createdOn)
     {
         $this->_createdOn = $createdOn;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getCategories()
+    {
+        return array(self::PRODUCT_CATEGORY_PINGPONG => 'Ping Pong',
+                     self::PRODUCT_CATEGORY_WINDOW  => 'Window Seats',
+                     self::PRODUCT_CATEGORY_OFFICE  => 'Offices');
     }
 }

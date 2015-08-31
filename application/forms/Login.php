@@ -23,7 +23,7 @@ class OfficeBuilder_Form_Login extends OfficeBuilder_Form_Abstract
             'required' => true,
             'autocorrect' => 'off',
             'autocapitalize' => 'off',
-            'placeholder' => 'Username'
+            'placeholder' => 'Email'
         ));
 
         $this->addElement('password', 'password', array(

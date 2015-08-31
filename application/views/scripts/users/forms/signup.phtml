@@ -1,0 +1,25 @@
+<form action="/users/signup" method="post" id="signup">
+    <div class="form-item">
+        <label for="first_name">First Name</label>
+        <?= $this->element->first_name ?>
+    </div>
+    <div class="form-item">
+        <label for="last_name">Last Name</label>
+        <?= $this->element->last_name ?>
+    </div>
+    <div class="form-item">
+        <label for="email">Email</label>
+        <?= $this->element->email ?>
+    </div>
+    <div class="form-item">
+        <label for="password">Password</label>
+        <?= $this->element->password ?>
+    </div>
+    <div class="form-item">
+        <label for="favorite_color" style="display: block;">What's your favorite color?</label>
+        <?= $this->element->favorite_color ?>
+    </div>
+    <div class="form-item">
+        <input type="submit" class="submit" value="Signup">
+    </div>
+</form>

@@ -1,0 +1,17 @@
+<div id="tabs">
+    <div class="loader" style="display: none;"></div>
+    <div class="tabs" style="border-left:none;">
+        <header>
+            <h2>Signup</h2>
+        </header>
+        <div class="info" style="margin-top: 25px;">
+            <div class="alert-message green"<?= $this->msg ? ' style="display:block;"' : '' ?>>
+                <span><?= $this->msg ?></span>
+            </div>
+            <div class="alert-message red"<?= $this->errorMsg ? ' style="display:block;"' : '' ?>>
+                <span><?= $this->errorMsg ?></span>
+            </div>
+            <?= $this->signupForm ?>
+        </div>
+    </div>
+</div>

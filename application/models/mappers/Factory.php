@@ -10,6 +10,10 @@
 class OfficeBuilder_Model_Mapper_Factory
 {
     const USER = 'User';
+    const INVENTORY = 'Inventory';
+    const PRODUCT = 'Product';
+    const PURCHASE = 'Purchase';
+    const RETURNS = 'Returns';
 
     private static $_factory;
 
@@ -71,5 +75,37 @@ class OfficeBuilder_Model_Mapper_Factory
     public function getUser()
     {
         return $this->getService(self::USER);
+    }
+
+    /**
+     * @return OfficeBuilder_Model_Mapper_Product
+     */
+    public function getProduct()
+    {
+        return $this->getService(self::PRODUCT);
+    }
+
+    /**
+     * @return OfficeBuilder_Model_Mapper_Inventory
+     */
+    public function getInventory()
+    {
+        return $this->getService(self::INVENTORY);
+    }
+
+    /**
+     * @return OfficeBuilder_Model_Mapper_Purchase
+     */
+    public function getPurchase()
+    {
+        return $this->getService(self::PURCHASE);
+    }
+
+    /**
+     * @return OfficeBuilder_Model_Mapper_Returns
+     */
+    public function getReturns()
+    {
+        return $this->getService(self::RETURNS);
     }
 }

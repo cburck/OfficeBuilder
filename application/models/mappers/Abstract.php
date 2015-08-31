@@ -131,6 +131,8 @@ abstract class OfficeBuilder_Model_Mapper_Abstract
     {
         if ($model->getId())
         {
+            //possibly set created here to get around timezone issues
+
             //UPDATE
             $table->update($data, 'id = ' . $table->getDefaultAdapter()->quote($model->getId()));
 

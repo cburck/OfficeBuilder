@@ -1,0 +1,47 @@
+
+<h1>Um. This is embarrasing.</h1>
+<h2>An error occurred!</h2>
+
+<br>
+
+Please try your request again.
+
+<?php if (isset($this->exception)): ?>
+
+    <h2><?php echo $this->response_code.' &mdash; '.$this->message ?></h2>
+
+    <h3>Exception:</h3>
+    <p><b>Message:</b> <?php echo $this->exception->getMessage() ?>
+    </p>
+    <br>
+    <p><b>File:</b> <?php echo $this->exception->getFile() ?>(<?php echo $this->exception->getLine() ?>)
+    </p>
+
+    <h3>Stack:</h3>
+    <pre><?php echo $this->exception->getTraceAsString() ?>
+		</pre>
+
+    <h3>Request:</h3>
+    <pre><?php echo var_export($this->request->getParams(), true) ?>
+		</pre>
+
+    <?php
+    //previous exception
+    $previous = $this->exception->getPrevious();
+    if ($previous):
+        ?>
+        <h3>Previous Exception:</h3>
+        <pre><?php echo sprintf("Exception '%s' with message '(%s) %s' in %s:%d",
+                get_class($previous),
+                $previous->getCode(),
+                $previous->getMessage(),
+                $previous->getFile(),
+                $previous->getLine());?>
+		</pre>
+    <?php endif ?>
+
+<?php endif ?>
+
+<?php if (!isset($this->exception)): ?>
+	</div>
+<?php endif ?>
